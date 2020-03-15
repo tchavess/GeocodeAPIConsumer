@@ -1,19 +1,20 @@
 package br.com.geocoding.geocodeconsumer.geocodeconsumerResource;
 
 import Config.GeocodeConsumerConfig;
-import br.com.geocoding.geocodeconsumer.Location;
+import br.com.geocoding.geocodeconsumer.LocationRequest;
 import br.com.geocoding.geocodeconsumer.geocodeconsumerService.GeocodeConsumerService;
+import com.google.maps.GeolocationApiRequest;
+import com.google.maps.model.LatLng;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/geocoding-api")
@@ -22,16 +23,16 @@ public class GeocodeConsumerResource {
     @Autowired
     GeocodeConsumerService geocodeConsumerService;
 
-    @GetMapping(value = "/location", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Location> resourceSearch(@RequestParam(value="address", required = false) String address){
-
-        Location response = new Location();
+    @PostMapping(value = "/location", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<LatLng>> resourceSearch(@RequestParam List<String> address){
+        logger.info("ADDRESS: " + address.toString());
+        List<LatLng> response = new ArrayList<>();
         Date dateInit = new Date();
         GeocodeConsumerConfig geocodeConsumerConfig = new GeocodeConsumerConfig();
         try{
 
 
-            response =  geocodeConsumerService.obterGeolocation(address, geocodeConsumerConfig.getKey_code());
+            response = geocodeConsumerService.obterGeolocation(address, geocodeConsumerConfig.getKey_code());
 
 
         }catch(Exception ex){
@@ -39,7 +40,8 @@ public class GeocodeConsumerResource {
         }finally {
             logger.info("####### GEOLOCATION RESOURCES RESUME ##########");
             logger.info("INIT: " + dateInit.toString());
-            logger.info("Response: " + response.toString());
+            logger.info("REQUEST: " + address.toString());
+            logger.info("RESPONSE: " + response.toString());
             logger.info("END: " + new Date());
             logger.info("####### END GEOLOCATION RESOURCES RESUME ##########");
         }
