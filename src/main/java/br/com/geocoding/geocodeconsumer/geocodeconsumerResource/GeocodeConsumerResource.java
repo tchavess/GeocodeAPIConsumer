@@ -1,10 +1,8 @@
 package br.com.geocoding.geocodeconsumer.geocodeconsumerResource;
 
-import Config.GeocodeConsumerConfig;
-import br.com.geocoding.geocodeconsumer.LocationRequest;
+import br.com.geocoding.geocodeconsumer.Config.GeocodeConsumerConfig;
+import br.com.geocoding.geocodeconsumer.Beans.GeocodeConsumerResponse;
 import br.com.geocoding.geocodeconsumer.geocodeconsumerService.GeocodeConsumerService;
-import com.google.maps.GeolocationApiRequest;
-import com.google.maps.model.LatLng;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,18 +21,15 @@ public class GeocodeConsumerResource {
     GeocodeConsumerService geocodeConsumerService;
 
     @PostMapping(value = "/location", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<LatLng>> resourceSearch(@RequestParam List<String> address){
-        logger.info("ADDRESS: " + address.toString());
-        List<LatLng> response = new ArrayList<>();
+    public ResponseEntity<GeocodeConsumerResponse> resourceSearch(@RequestParam List<String> address){
+        GeocodeConsumerResponse response = null;
         Date dateInit = new Date();
         GeocodeConsumerConfig geocodeConsumerConfig = new GeocodeConsumerConfig();
         try{
-
-
+                       //chamada do serviço                               //Chave key_code Google
             response = geocodeConsumerService.obterGeolocation(address, geocodeConsumerConfig.getKey_code());
 
-
-        }catch(Exception ex){
+        }catch (Exception ex){
             ex.printStackTrace();
         }finally {
             logger.info("####### GEOLOCATION RESOURCES RESUME ##########");

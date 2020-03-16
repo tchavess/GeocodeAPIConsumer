@@ -1,4 +1,4 @@
-package Config;
+package br.com.geocoding.geocodeconsumer.Config;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class GeocodeConsumerConfig {
-
+    //API KEY do Google
     private String key_code;
 
         public GeocodeConsumerConfig() {
