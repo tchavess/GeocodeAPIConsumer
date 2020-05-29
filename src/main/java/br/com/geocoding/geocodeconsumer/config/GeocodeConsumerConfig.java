@@ -1,4 +1,4 @@
-package br.com.geocoding.geocodeconsumer.Config;
+package br.com.geocoding.geocodeconsumer.config;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -12,6 +12,6 @@ public class GeocodeConsumerConfig {
     private String key_code;
 
         public GeocodeConsumerConfig() {
-            this.key_code = "AIzaSyADxZ2DfcGkasFIjsXIL6RgT5kJIYzqokw";
+            this.key_code = "AIzaSyBilyty48TJT0dGayaMkKicX6VIPjGzzWA";
         }
 }

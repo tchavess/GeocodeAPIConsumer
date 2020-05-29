@@ -1,4 +1,4 @@
-package br.com.geocoding.geocodeconsumer.Calculations;
+package br.com.geocoding.geocodeconsumer.calculations;
 
 import com.google.maps.model.LatLng;
 
@@ -17,7 +17,7 @@ public class GeocodeConsumerCalculations {
         try {
             List<LatLng> coords = new ArrayList<>(chord);
             for(LatLng coorD: coords){
-                soma += Math.pow((coorD.lat - coorD.lng), 2);
+                soma = (coords.size() != 1) ? soma + Math.pow((coorD.lat - coorD.lng), 2) : 0;
             }
 
 
