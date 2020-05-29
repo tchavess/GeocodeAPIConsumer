@@ -1,7 +1,7 @@
 # GeocodeAPIConsumer
 API REST que consome Geocoding API do Google atraves da biblioteca GeoApiContext para calculo Euclidiano entre coordenadas
 
-URL para testes: http://localhost:8080/geocoding-api/location
+URL para testes: http://localhost:8080/geocoding-api/location   //POST method
 
 Body: {
 	"address":[
