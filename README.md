@@ -1,6 +1,10 @@
 # GeocodeAPIConsumer
 API REST que consome Geocoding API do Google atraves da biblioteca GeoApiContext para calculo Euclidiano entre coordenadas
 
+Documentação Swagger
+
+http://localhost:8080/swagger-ui.html#
+
 URL para testes: http://localhost:8080/geocoding-api/location   //POST method
 
 Body: {
