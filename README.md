@@ -1,33 +1,41 @@
 # GeocodeAPIConsumer
 API REST que consome Geocoding API do Google atraves da biblioteca GeoApiContext para calculo Euclidiano entre coordenadas
 
-URL para testes: http://localhost:8080/geocoding-api/location/?address=Av. Rio Branco, 1 - Centro, Rio de Janeiro - RJ,
-20090003&address=Praça Mal. Âncora, 122 - Centro, Rio de Janeiro - RJ, 20021200&address=Rua 19 de
-Fevereiro, 34 - Botafogo, Rio de Janeiro -RJ, 22280030
+URL para testes: http://localhost:8080/geocoding-api/location
 
-{
-    "address": [
-        "Av. Rio Branco, 1 - Centro, Rio de Janeiro - RJ,20090003",
-        "Praça Mal. Âncora, 122 - Centro, Rio de Janeiro - RJ, 20021200",
-        "Rua 19 de Fevereiro, 34 - Botafogo, Rio de Janeiro - RJ, 22280030"
-    ],
-    "coords": [
-        {
-            "lat": -22.8973551,
-            "lng": -43.1802782
-        },
-        {
-            "lat": -22.9039608,
-            "lng": -43.1703536
-        },
-        {
-            "lat": -22.9507173,
-            "lng": -43.1876474
-        }
-    ],
-    "result": "35,09"
+Body: {
+	"address":[
+		"Rua Figueiredo Rocha, 896 Vigario Geral",
+		"Praça Francisco Manoel da Silva, 25 Vila Amelia"]
 }
 
-Onde "address" sao os endereços pesquisados, "coords" os coordenadas dos endereços pesquisados, obtidos 
+Response:
+
+{
+    "content": {
+        "address": {
+            "address": [
+                "Rua Figueiredo Rocha, 896 Vigario Geral",
+                "Praça Francisco Manoel da Silva, 25 Vila Amelia"
+            ]
+        },
+        "coords": [
+            {
+                "lat": -22.8085239,
+                "lng": -43.31751
+            },
+            {
+                "lat": -22.7844615,
+                "lng": -43.3211179
+            }
+        ],
+        "result": "29,02"
+    },
+    "errors": []
+}
+
+Onde "address" sao os endereços pesquisados, "coords" as coordenadas dos endereços pesquisados, obtidos 
 atraves do geocoding-api e result é o resultado obtido atraves do calculo de distancia euclideana entre os pontos
 
+
+[![Build Status](https://travis-ci.org/tchavess/GeocodeAPIConsumer.svg?branch=master)](https://travis-ci.org/tchavess/GeocodeAPIConsumer)
